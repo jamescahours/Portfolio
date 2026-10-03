@@ -1,139 +1,169 @@
-const skills = [
-  ".NET / C#",
-  "React",
-  "Angular",
-  "TypeScript",
-  "SQL Server",
-  "Azure",
-  "REST APIs",
-  "Git / DevOps",
+const categories = [
+  { number: "01", title: "Software", copy: "Products, platforms, APIs, integrations, and the systems behind them.", href: "#software" },
+  { number: "02", title: "Home & DIY", copy: "Decks, landscaping, home automation, and the projects that never really end.", href: "#projects" },
+  { number: "03", title: "Music", copy: "Guitars, amps, tone chasing, recording, and an unreasonable amount of gear.", href: "#music" },
+  { number: "04", title: "Technology", copy: "PC builds, networking, home servers, and whatever I’m tinkering with next.", href: "#technology" },
 ];
 
 const projects = [
   {
-    title: "Loan Origination Platform",
-    description:
-      "Enterprise financial software built across .NET APIs and Angular applications, with integrations for lending, payments, document workflows, and third-party providers.",
-    tags: [".NET", "Angular", "SQL Server", "Azure"],
+    kicker: "Software · Personal",
+    title: "A place for everything I build.",
+    copy: "This site is becoming the home for my software work, personal projects, music, and the technical rabbit holes I tend to disappear into.",
+    meta: "Next.js · React · TypeScript · Vercel",
+    className: "project-card project-card-wide project-site",
   },
   {
-    title: "AI Content & Search",
-    description:
-      "Document ingestion and retrieval workflows using Azure Blob Storage and AI search patterns for lender-specific internal knowledge.",
-    tags: ["Azure", "AI Search", ".NET", "RAG"],
+    kicker: "Technology · Home Automation",
+    title: "A home that works a little smarter.",
+    copy: "Home Assistant, Z-Wave, Zigbee, Node-RED, sensors, scenes, and automations built around how we actually use the house.",
+    meta: "Home Assistant · Raspberry Pi · Z-Wave · Zigbee",
+    className: "project-card project-automation",
   },
   {
-    title: "Consumer Web Applications",
-    description:
-      "Responsive web applications and APIs supporting authentication, application intake, uploads, SSO, and multi-system data flows.",
-    tags: ["React", "Angular", "TypeScript", "APIs"],
+    kicker: "Home & DIY · Backyard",
+    title: "Building a better backyard.",
+    copy: "A from-scratch deck project with new footings, structural framing, drainage work, and a stock-tank pool integrated into the design.",
+    meta: "Design · Framing · Concrete · Landscaping",
+    className: "project-card project-deck",
+  },
+  {
+    kicker: "Music · Guitar",
+    title: "Always chasing the next sound.",
+    copy: "Guitars, amps, pedals, modelers, recording gear, and the never-ending attempt to understand why one tiny change sounds completely different.",
+    meta: "Guitar · Amps · Effects · Recording",
+    className: "project-card project-music",
   },
 ];
 
 export default function Home() {
   return (
     <main>
-      <section className="hero">
-        <nav className="nav shell">
-          <a className="brand" href="#top">JC</a>
-          <div className="navLinks">
-            <a href="#about">About</a>
+      <header className="site-header">
+        <div className="shell nav">
+          <a className="wordmark" href="#top" aria-label="James Cahours home">
+            james cahours<span>.</span>
+          </a>
+          <nav className="nav-links" aria-label="Primary navigation">
+            <a href="#software">Software</a>
             <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </nav>
+            <a href="#music">Music</a>
+            <a href="#about">About</a>
+          </nav>
+          <a className="connect-link" href="#contact">
+            Let&apos;s connect <span>↗</span>
+          </a>
+        </div>
+      </header>
 
-        <div className="heroContent shell" id="top">
-          <p className="eyebrow">Software Developer · Austin, Texas</p>
-          <h1>
-            I build practical software
-            <span> for real-world systems.</span>
-          </h1>
-          <p className="heroCopy">
-            I’m James Cahours, a full-stack software developer focused on .NET,
-            modern JavaScript frameworks, APIs, databases, and cloud architecture.
+      <section className="hero shell" id="top">
+        <p className="hero-kicker">Developer. Guitar player. Perpetual tinkerer.</p>
+        <h1>
+          I like to build <em>things.</em>
+        </h1>
+        <div className="hero-bottom">
+          <p>
+            Sometimes it&apos;s software. Sometimes it&apos;s a deck. Sometimes it&apos;s
+            a guitar tone that takes three hours to get 2% better.
           </p>
-          <div className="heroActions">
-            <a className="button primary" href="#projects">View my work</a>
-            <a
-              className="button secondary"
-              href="https://github.com/jamescahours"
-              target="_blank"
-              rel="noreferrer"
+          <a className="circle-link" href="#projects" aria-label="View projects">
+            ↓
+          </a>
+        </div>
+      </section>
+
+      <section className="project-index shell" aria-label="Project categories">
+        {categories.map((category) => (
+          <a className="index-row" href={category.href} key={category.number}>
+            <span className="index-number">{category.number}</span>
+            <span className="index-title">{category.title}</span>
+            <span className="index-copy">{category.copy}</span>
+            <span className="index-arrow">↗</span>
+          </a>
+        ))}
+      </section>
+
+      <section className="selected-work shell" id="projects">
+        <div className="section-intro">
+          <p className="eyebrow">Selected projects</p>
+          <h2>A few things I&apos;m working on.</h2>
+        </div>
+
+        <div className="project-grid">
+          {projects.map((project, index) => (
+            <article
+              className={project.className}
+              id={
+                index === 0
+                  ? "software"
+                  : index === 2
+                    ? "technology"
+                    : index === 3
+                      ? "music"
+                      : undefined
+              }
+              key={project.title}
             >
-              GitHub
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section shell" id="about">
-        <div className="sectionHeading">
-          <p className="eyebrow">About</p>
-          <h2>Full-stack experience across the whole application lifecycle.</h2>
-        </div>
-        <div className="aboutGrid">
-          <p>
-            I’ve spent my career building and maintaining business-critical software,
-            with deep experience in C#/.NET and years of work across React, Angular,
-            TypeScript, SQL, Azure, integrations, testing, and deployment.
-          </p>
-          <p>
-            I enjoy solving the parts of software development that sit between clean
-            code and messy reality: system integrations, legacy modernization,
-            developer tooling, production troubleshooting, and turning business
-            requirements into maintainable applications.
-          </p>
-        </div>
-
-        <div className="skills">
-          {skills.map((skill) => (
-            <span key={skill}>{skill}</span>
-          ))}
-        </div>
-      </section>
-
-      <section className="section shell" id="projects">
-        <div className="sectionHeading">
-          <p className="eyebrow">Selected Work</p>
-          <h2>Systems, integrations, and products I’ve worked on.</h2>
-        </div>
-
-        <div className="projectGrid">
-          {projects.map((project) => (
-            <article className="card" key={project.title}>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="tags">
-                {project.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
+              <div className="project-visual" aria-hidden="true">
+                <span className="visual-number">0{index + 1}</span>
+                <span className="visual-mark">
+                  {index === 0 ? "{ }" : index === 1 ? "⌁" : index === 2 ? "⌂" : "♪"}
+                </span>
+              </div>
+              <div className="project-content">
+                <p className="project-kicker">{project.kicker}</p>
+                <h3>{project.title}</h3>
+                <p className="project-copy">{project.copy}</p>
+                <p className="project-meta">{project.meta}</p>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="section shell contact" id="contact">
-        <p className="eyebrow">Contact</p>
-        <h2>Want to build something?</h2>
-        <p>
-          The next step for this site is adding your real project history, resume,
-          contact details, and a database-backed project or blog section.
-        </p>
-        <a
-          className="button primary"
-          href="https://github.com/jamescahours"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Find me on GitHub
-        </a>
+      <section className="about-strip" id="about">
+        <div className="shell about-grid">
+          <p className="eyebrow">About me</p>
+          <div>
+            <h2>
+              Developer by trade.
+              <br />
+              <em>Maker by nature.</em>
+            </h2>
+            <p className="about-copy">
+              I&apos;m James, a software developer in Austin, Texas. I&apos;ve spent my
+              career building business software across .NET, React, Angular, SQL,
+              Azure, APIs, and integrations. Away from the keyboard, I&apos;m usually
+              building something at the house, wiring up another automation, working
+              on a PC, or playing guitar louder than necessary.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="contact shell" id="contact">
+        <p className="eyebrow">Say hello</p>
+        <div className="contact-grid">
+          <h2>
+            Good things start
+            <br />
+            with <em>curiosity.</em>
+          </h2>
+          <div className="contact-links">
+            <a href="https://github.com/jamescahours" target="_blank" rel="noreferrer">
+              GitHub <span>↗</span>
+            </a>
+            <a href="mailto:james@jamescahours.com">
+              Email <span>↗</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       <footer className="footer shell">
         <span>© {new Date().getFullYear()} James Cahours</span>
-        <span>Built with Next.js</span>
+        <span>Austin, Texas</span>
+        <span>Built because I wanted to.</span>
       </footer>
     </main>
   );
