@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "kicker": "Developer. Guitar player. Perpetual tinkerer.",
+    "title": "I like to build",
+    "accent": "things.",
+    "copy": "Sometimes it's software. Sometimes it's a deck. Sometimes it's a guitar tone that takes three hours to get 2% better."
+  },
+  "projectsHeading": "A few things I'm working on.",
+  "categories": [
+    {
+      "number": "01",
+      "title": "Software",
+      "copy": "Products, platforms, APIs, integrations, and the systems behind them.",
+      "href": "#software"
+    },
+    {
+      "number": "02",
+      "title": "Home & DIY",
+      "copy": "Decks, landscaping, home automation, and the projects that never really end.",
+      "href": "#projects"
+    },
+    {
+      "number": "03",
+      "title": "Music",
+      "copy": "Guitars, amps, tone chasing, recording, and an unreasonable amount of gear.",
+      "href": "#music"
+    },
+    {
+      "number": "04",
+      "title": "Technology",
+      "copy": "PC builds, networking, home servers, and whatever I\u2019m tinkering with next.",
+      "href": "#technology"
+    }
+  ],
+  "projects": [
+    {
+      "kicker": "Software \u00b7 Personal",
+      "title": "A place for everything I build.",
+      "copy": "This site is becoming the home for my software work, personal projects, music, and the technical rabbit holes I tend to disappear into.",
+      "meta": "Next.js \u00b7 React \u00b7 TypeScript \u00b7 Vercel",
+      "className": "project-card project-card-wide project-site"
+    },
+    {
+      "kicker": "Technology \u00b7 Home Automation",
+      "title": "A home that works a little smarter.",
+      "copy": "Home Assistant, Z-Wave, Zigbee, Node-RED, sensors, scenes, and automations built around how we actually use the house.",
+      "meta": "Home Assistant \u00b7 Raspberry Pi \u00b7 Z-Wave \u00b7 Zigbee",
+      "className": "project-card project-automation"
+    },
+    {
+      "kicker": "Home & DIY \u00b7 Backyard",
+      "title": "Building a better backyard.",
+      "copy": "A from-scratch deck project with new footings, structural framing, drainage work, and a stock-tank pool integrated into the design.",
+      "meta": "Design \u00b7 Framing \u00b7 Concrete \u00b7 Landscaping",
+      "className": "project-card project-deck"
+    },
+    {
+      "kicker": "Music \u00b7 Guitar",
+      "title": "Always chasing the next sound.",
+      "copy": "Guitars, amps, pedals, modelers, recording gear, and the never-ending attempt to understand why one tiny change sounds completely different.",
+      "meta": "Guitar \u00b7 Amps \u00b7 Effects \u00b7 Recording",
+      "className": "project-card project-music"
+    }
+  ],
+  "about": {
+    "title": "Developer by trade.",
+    "accent": "Maker by nature.",
+    "copy": "I'm James, a software developer in Austin, Texas. I've spent my career building business software across .NET, React, Angular, SQL, Azure, APIs, and integrations. Away from the keyboard, I'm usually building something at the house, wiring up another automation, working on a PC, or playing guitar louder than necessary."
+  },
+  "contact": {
+    "title": "Good things start",
+    "accent": "curiosity.",
+    "github": "https://github.com/jamescahours",
+    "email": "james@jamescahours.com"
+  },
+  "footer": {
+    "location": "Austin, Texas",
+    "note": "Built because I wanted to."
+  }
+}

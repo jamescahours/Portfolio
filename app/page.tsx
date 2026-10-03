@@ -1,40 +1,5 @@
-const categories = [
-  { number: "01", title: "Software", copy: "Products, platforms, APIs, integrations, and the systems behind them.", href: "#software" },
-  { number: "02", title: "Home & DIY", copy: "Decks, landscaping, home automation, and the projects that never really end.", href: "#projects" },
-  { number: "03", title: "Music", copy: "Guitars, amps, tone chasing, recording, and an unreasonable amount of gear.", href: "#music" },
-  { number: "04", title: "Technology", copy: "PC builds, networking, home servers, and whatever I’m tinkering with next.", href: "#technology" },
-];
-
-const projects = [
-  {
-    kicker: "Software · Personal",
-    title: "A place for everything I build.",
-    copy: "This site is becoming the home for my software work, personal projects, music, and the technical rabbit holes I tend to disappear into.",
-    meta: "Next.js · React · TypeScript · Vercel",
-    className: "project-card project-card-wide project-site",
-  },
-  {
-    kicker: "Technology · Home Automation",
-    title: "A home that works a little smarter.",
-    copy: "Home Assistant, Z-Wave, Zigbee, Node-RED, sensors, scenes, and automations built around how we actually use the house.",
-    meta: "Home Assistant · Raspberry Pi · Z-Wave · Zigbee",
-    className: "project-card project-automation",
-  },
-  {
-    kicker: "Home & DIY · Backyard",
-    title: "Building a better backyard.",
-    copy: "A from-scratch deck project with new footings, structural framing, drainage work, and a stock-tank pool integrated into the design.",
-    meta: "Design · Framing · Concrete · Landscaping",
-    className: "project-card project-deck",
-  },
-  {
-    kicker: "Music · Guitar",
-    title: "Always chasing the next sound.",
-    copy: "Guitars, amps, pedals, modelers, recording gear, and the never-ending attempt to understand why one tiny change sounds completely different.",
-    meta: "Guitar · Amps · Effects · Recording",
-    className: "project-card project-music",
-  },
-];
+import content from "../content/site.json";
+const { categories, projects } = content;
 
 export default function Home() {
   return (
@@ -57,16 +22,17 @@ export default function Home() {
       </header>
 
       <section className="hero shell" id="top">
-        <p className="hero-kicker">Developer. Guitar player. Perpetual tinkerer.</p>
+        <p className="hero-kicker">{content.hero.kicker}</p>
         <h1>
-          I like to build <em>things.</em>
+          {content.hero.title} <em>{content.hero.accent}</em>
         </h1>
         <div className="hero-bottom">
-          <p>
-            Sometimes it&apos;s software. Sometimes it&apos;s a deck. Sometimes it&apos;s
-            a guitar tone that takes three hours to get 2% better.
-          </p>
-          <a className="circle-link" href="#projects" aria-label="View projects">
+          <p>{content.hero.copy}</p>
+          <a
+            className="circle-link"
+            href="#projects"
+            aria-label="View projects"
+          >
             ↓
           </a>
         </div>
@@ -86,7 +52,7 @@ export default function Home() {
       <section className="selected-work shell" id="projects">
         <div className="section-intro">
           <p className="eyebrow">Selected projects</p>
-          <h2>A few things I&apos;m working on.</h2>
+          <h2>{content.projectsHeading}</h2>
         </div>
 
         <div className="project-grid">
@@ -94,20 +60,31 @@ export default function Home() {
             <article
               className={project.className}
               id={
-                index === 0
-                  ? "software"
-                  : index === 2
-                    ? "technology"
-                    : index === 3
-                      ? "music"
-                      : undefined
+                projects.findIndex(
+                  (item) => item.className === project.className,
+                ) === index
+                  ? (
+                      {
+                        "project-card project-card-wide project-site":
+                          "software",
+                        "project-card project-automation": "technology",
+                        "project-card project-music": "music",
+                      } as Record<string, string>
+                    )[project.className]
+                  : undefined
               }
-              key={project.title}
+              key={index}
             >
               <div className="project-visual" aria-hidden="true">
                 <span className="visual-number">0{index + 1}</span>
                 <span className="visual-mark">
-                  {index === 0 ? "{ }" : index === 1 ? "⌁" : index === 2 ? "⌂" : "♪"}
+                  {project.className.includes("project-site")
+                    ? "{ }"
+                    : project.className.includes("project-automation")
+                      ? "⌁"
+                      : project.className.includes("project-deck")
+                        ? "⌂"
+                        : "♪"}
                 </span>
               </div>
               <div className="project-content">
@@ -126,17 +103,11 @@ export default function Home() {
           <p className="eyebrow">About me</p>
           <div>
             <h2>
-              Developer by trade.
+              {content.about.title}
               <br />
-              <em>Maker by nature.</em>
+              <em>{content.about.accent}</em>
             </h2>
-            <p className="about-copy">
-              I&apos;m James, a software developer in Austin, Texas. I&apos;ve spent my
-              career building business software across .NET, React, Angular, SQL,
-              Azure, APIs, and integrations. Away from the keyboard, I&apos;m usually
-              building something at the house, wiring up another automation, working
-              on a PC, or playing guitar louder than necessary.
-            </p>
+            <p className="about-copy">{content.about.copy}</p>
           </div>
         </div>
       </section>
@@ -145,15 +116,15 @@ export default function Home() {
         <p className="eyebrow">Say hello</p>
         <div className="contact-grid">
           <h2>
-            Good things start
+            {content.contact.title}
             <br />
-            with <em>curiosity.</em>
+            with <em>{content.contact.accent}</em>
           </h2>
           <div className="contact-links">
-            <a href="https://github.com/jamescahours" target="_blank" rel="noreferrer">
+            <a href={content.contact.github} target="_blank" rel="noreferrer">
               GitHub <span>↗</span>
             </a>
-            <a href="mailto:james@jamescahours.com">
+            <a href={`mailto:${content.contact.email}`}>
               Email <span>↗</span>
             </a>
           </div>
@@ -162,8 +133,8 @@ export default function Home() {
 
       <footer className="footer shell">
         <span>© {new Date().getFullYear()} James Cahours</span>
-        <span>Austin, Texas</span>
-        <span>Built because I wanted to.</span>
+        <span>{content.footer.location}</span>
+        <span>{content.footer.note}</span>
       </footer>
     </main>
   );
